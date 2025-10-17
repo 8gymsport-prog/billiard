@@ -15,7 +15,7 @@ export function formatCurrency(amount: number) {
 }
 
 export function formatDuration(minutes: number) {
-  if (minutes < 0) return "0m";
+  if (minutes < 0) return "0 menit";
   const h = Math.floor(minutes / 60);
   const m = Math.floor(minutes % 60);
   return `${h > 0 ? `${h} jam ` : ""}${m} menit`;

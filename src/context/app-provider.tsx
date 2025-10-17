@@ -102,7 +102,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           const elapsedMinutes = (endTime - s.startTime) / (1000 * 60);
           const cost = (elapsedMinutes / 60) * settings.hourlyRate;
           
-          endedSession = { ...s, endTime, status: 'finished', cost: parseFloat(cost.toFixed(2)) };
+          endedSession = { ...s, endTime, status: 'finished', cost: Math.round(cost) };
           return endedSession;
         }
         return s;
