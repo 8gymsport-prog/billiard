@@ -5,10 +5,15 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
 import { DollarSign } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 export function RevenueOverview() {
   const { finishedSessions, tables } = useCueKeeper();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const { chartData, totalRevenue } = useMemo(() => {
     const revenueByTable = new Map<string, number>();
@@ -28,6 +33,25 @@ export function RevenueOverview() {
 
     return { chartData, totalRevenue };
   }, [finishedSessions, tables]);
+  
+  if (!isClient) {
+    return (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-xl font-headline">
+              <DollarSign className="text-accent" />
+              Ringkasan Pendapatan
+            </CardTitle>
+            <CardDescription>Memuat data pendapatan...</CardDescription>
+          </CardHeader>
+          <CardContent>
+           <div className="h-[300px] flex items-center justify-center text-muted-foreground">
+             <p>Memuat...</p>
+           </div>
+          </CardContent>
+        </Card>
+    );
+  }
 
   return (
     <Card>

@@ -5,7 +5,7 @@ import { Footer } from '@/components/footer';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'CueKeeper',
+  title: '8GymSport Billiard',
   description: 'Aplikasi Manajemen Biliar oleh rakarmp',
 };
 

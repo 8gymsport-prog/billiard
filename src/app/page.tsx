@@ -26,7 +26,7 @@ export default function Home() {
         <TabsList className="grid w-full grid-cols-3 mb-4">
           <TabsTrigger value="dashboard">
             <LayoutDashboard className="w-4 h-4 mr-2" />
-            Dasboard
+            Dashboard
           </TabsTrigger>
           <TabsTrigger value="manage">
             <Settings className="w-4 h-4 mr-2" />
