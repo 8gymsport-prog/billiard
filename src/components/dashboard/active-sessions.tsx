@@ -13,7 +13,7 @@ export function ActiveSessions() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-xl font-headline">
+        <CardTitle className="flex items-center gap-2 text-xl font-headline font-semibold">
           <Hourglass className="text-accent" />
           Sesi Aktif
         </CardTitle>

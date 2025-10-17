@@ -16,7 +16,7 @@ export default function Home() {
           <Dices size={48} />
         </div>
         <div>
-          <h1 className="text-3xl md:text-4xl font-headline text-primary">
+          <h1 className="text-3xl md:text-4xl font-headline font-bold text-primary">
             8GymSport Billiard
           </h1>
           <p className="text-muted-foreground">Automatic System For Billiard</p>

@@ -51,7 +51,7 @@ export function OccupancyPrediction() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-xl font-headline">
+        <CardTitle className="flex items-center gap-2 text-xl font-headline font-semibold">
           <BrainCircuit className="text-accent" />
           Prediksi Okupansi AI
         </CardTitle>

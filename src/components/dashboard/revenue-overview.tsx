@@ -38,7 +38,7 @@ export function RevenueOverview() {
     return (
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-xl font-headline">
+            <CardTitle className="flex items-center gap-2 text-xl font-headline font-semibold">
               <DollarSign className="text-accent" />
               Ringkasan Pendapatan
             </CardTitle>
@@ -56,7 +56,7 @@ export function RevenueOverview() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-xl font-headline">
+        <CardTitle className="flex items-center gap-2 text-xl font-headline font-semibold">
           <DollarSign className="text-accent" />
           Ringkasan Pendapatan
         </CardTitle>

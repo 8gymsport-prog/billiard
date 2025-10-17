@@ -24,7 +24,7 @@ export function TableList() {
       <Card>
         <CardHeader className="flex-row items-center justify-between">
             <div>
-                <CardTitle className="flex items-center gap-2 text-xl font-headline">
+                <CardTitle className="flex items-center gap-2 text-xl font-headline font-semibold">
                     <Dices className="text-accent" />
                     Manajemen Meja
                 </CardTitle>

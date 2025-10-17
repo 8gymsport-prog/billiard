@@ -39,7 +39,7 @@ export function SessionCard({ session }: SessionCardProps) {
     <>
       <Card className={`flex flex-col shadow-lg transition-all duration-300 ${isTimeUp ? 'border-destructive ring-2 ring-destructive/50' : 'border-primary/20'}`}>
         <CardHeader>
-          <CardTitle className="text-primary font-headline text-lg">{session.tableName}</CardTitle>
+          <CardTitle className="text-primary font-headline text-lg font-semibold">{session.tableName}</CardTitle>
         </CardHeader>
         <CardContent className="flex-grow space-y-3">
           <div className="flex items-center gap-3 text-muted-foreground">

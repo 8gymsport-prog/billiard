@@ -32,7 +32,7 @@ export function EndSessionDialog({ session, cost, onClose }: EndSessionDialogPro
     <Dialog open onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Akhiri Sesi untuk {session.tableName}?</DialogTitle>
+          <DialogTitle className="font-semibold">Akhiri Sesi untuk {session.tableName}?</DialogTitle>
           <DialogDescription>
             Ini akan menghentikan timer dan menghitung biaya akhir.
           </DialogDescription>

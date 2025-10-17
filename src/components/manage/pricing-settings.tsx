@@ -20,7 +20,7 @@ export function PricingSettings() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-xl font-headline">
+        <CardTitle className="flex items-center gap-2 text-xl font-headline font-semibold">
             <DollarSign className="text-accent" />
             Harga
         </CardTitle>

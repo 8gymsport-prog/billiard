@@ -17,7 +17,7 @@ export function HistoryTab() {
 
   return (
     <div className="p-4 sm:p-6">
-      <h2 className="text-2xl font-headline text-primary mb-4">Riwayat Sesi</h2>
+      <h2 className="text-2xl font-headline font-semibold text-primary mb-4">Riwayat Sesi</h2>
        <Input
         placeholder="Filter berdasarkan nama meja..."
         value={searchTerm}
