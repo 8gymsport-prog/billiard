@@ -3,7 +3,7 @@
 import { HistoryTab } from "@/components/history/history-tab";
 import { DashboardTab } from "@/components/dashboard/dashboard-tab";
 import { ManageTab } from "@/components/manage/manage-tab";
-import { Logo } from "@/components/icons/logo";
+// import { Logo } from "@/components/icons/logo";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dices, LayoutDashboard, List, Settings } from "lucide-react";
@@ -17,9 +17,9 @@ export default function Home() {
         </div>
         <div>
           <h1 className="text-3xl md:text-4xl font-headline text-primary">
-            CueKeeper
+            8GymSport Billiard
           </h1>
-          <p className="text-muted-foreground">Sistem Manajemen Biliar</p>
+          <p className="text-muted-foreground">Automatic System For Billiard</p>
         </div>
       </header>
       <Tabs defaultValue="dashboard" className="w-full">
