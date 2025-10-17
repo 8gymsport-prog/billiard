@@ -44,15 +44,15 @@ export function EditTableDialog({ table, onClose }: EditTableDialogProps) {
     <Dialog open={true} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{isEditing ? `Edit ${table.name}` : "Add New Table"}</DialogTitle>
+          <DialogTitle>{isEditing ? `Edit ${table.name}` : "Tambah Meja Baru"}</DialogTitle>
           <DialogDescription>
-            {isEditing ? "Change the name of the table below." : "Enter a name for the new table."}
+            {isEditing ? "Ubah nama meja di bawah ini." : "Masukkan nama untuk meja baru."}
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
-              Table Name
+              Nama Meja
             </Label>
             <Input
               id="name"
@@ -65,10 +65,10 @@ export function EditTableDialog({ table, onClose }: EditTableDialogProps) {
           </div>
         </div>
         <DialogFooter>
-          <Button type="button" variant="outline" onClick={onClose}>Cancel</Button>
+          <Button type="button" variant="outline" onClick={onClose}>Batal</Button>
           <Button type="submit" onClick={handleSave}>
             <Save className="w-4 h-4 mr-2" />
-            Save
+            Simpan
           </Button>
         </DialogFooter>
       </DialogContent>

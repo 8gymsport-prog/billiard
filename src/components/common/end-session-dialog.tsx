@@ -21,8 +21,8 @@ export function EndSessionDialog({ session, cost, onClose }: EndSessionDialogPro
     const finalSession = endSession(session.id);
     if(finalSession) {
         toast({
-            title: "Session Ended",
-            description: `${finalSession.tableName} session finished. Final cost: ${formatCurrency(finalSession.cost || 0)}`,
+            title: "Sesi Selesai",
+            description: `Sesi ${finalSession.tableName} selesai. Biaya akhir: ${formatCurrency(finalSession.cost || 0)}`,
         });
     }
     onClose();
@@ -32,18 +32,18 @@ export function EndSessionDialog({ session, cost, onClose }: EndSessionDialogPro
     <Dialog open onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>End Session for {session.tableName}?</DialogTitle>
+          <DialogTitle>Akhiri Sesi untuk {session.tableName}?</DialogTitle>
           <DialogDescription>
-            This will stop the timer and calculate the final cost.
+            Ini akan menghentikan timer dan menghitung biaya akhir.
           </DialogDescription>
         </DialogHeader>
         <div className="my-4 text-center">
-            <p className="text-muted-foreground">Final Cost</p>
+            <p className="text-muted-foreground">Biaya Akhir</p>
             <p className="text-4xl font-bold font-headline text-primary">{formatCurrency(cost)}</p>
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={onClose}>Cancel</Button>
-          <Button variant="destructive" onClick={handleEndSession}>Confirm & End</Button>
+          <Button variant="outline" onClick={onClose}>Batal</Button>
+          <Button variant="destructive" onClick={handleEndSession}>Konfirmasi & Akhiri</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

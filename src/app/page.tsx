@@ -19,22 +19,22 @@ export default function Home() {
           <h1 className="text-3xl md:text-4xl font-headline text-primary">
             CueKeeper
           </h1>
-          <p className="text-muted-foreground">Billiard Management System</p>
+          <p className="text-muted-foreground">Sistem Manajemen Biliar</p>
         </div>
       </header>
       <Tabs defaultValue="dashboard" className="w-full">
         <TabsList className="grid w-full grid-cols-3 mb-4">
           <TabsTrigger value="dashboard">
             <LayoutDashboard className="w-4 h-4 mr-2" />
-            Dashboard
+            Dasbor
           </TabsTrigger>
           <TabsTrigger value="manage">
             <Settings className="w-4 h-4 mr-2" />
-            Manage
+            Kelola
           </TabsTrigger>
           <TabsTrigger value="history">
             <List className="w-4 h-4 mr-2" />
-            History
+            Riwayat
           </TabsTrigger>
         </TabsList>
         <Card>

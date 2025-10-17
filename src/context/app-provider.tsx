@@ -51,31 +51,31 @@ export const AppContext = createContext<AppContextType | undefined>(undefined);
 export function AppProvider({ children }: { children: ReactNode }) {
   const { toast } = useToast();
   const [tables, setTables] = usePersistentState<BilliardTable[]>('cuekeeper_tables', [
-    { id: '1', name: 'Table 1' },
-    { id: '2', name: 'Table 2' },
-    { id: '3', name: 'Table 3' },
+    { id: '1', name: 'Meja 1' },
+    { id: '2', name: 'Meja 2' },
+    { id: '3', name: 'Meja 3' },
   ]);
   const [sessions, setSessions] = usePersistentState<Session[]>('cuekeeper_sessions', []);
-  const [settings, setSettings] = usePersistentState<AppSettings>('cuekeeper_settings', { hourlyRate: 10 });
+  const [settings, setSettings] = usePersistentState<AppSettings>('cuekeeper_settings', { hourlyRate: 25000 });
 
   const addTable = (name: string) => {
     const newTable: BilliardTable = { id: crypto.randomUUID(), name };
     setTables(prev => [...prev, newTable]);
-    toast({ title: "Table Added", description: `Table "${name}" has been created.` });
+    toast({ title: "Meja Ditambahkan", description: `Meja "${name}" telah dibuat.` });
   };
 
   const updateTable = (id: string, name: string) => {
     setTables(prev => prev.map(t => t.id === id ? { ...t, name } : t));
-    toast({ title: "Table Updated", description: `Table has been renamed to "${name}".` });
+    toast({ title: "Meja Diperbarui", description: `Meja telah diubah namanya menjadi "${name}".` });
   }
 
   const removeTable = (id: string) => {
     if (sessions.some(s => s.tableId === id && s.status === 'active')) {
-      toast({ variant: 'destructive', title: "Cannot Remove Table", description: "This table is currently in use." });
+      toast({ variant: 'destructive', title: "Tidak Dapat Menghapus Meja", description: "Meja ini sedang digunakan." });
       return;
     }
     setTables(prev => prev.filter(t => t.id !== id));
-    toast({ title: "Table Removed" });
+    toast({ title: "Meja Dihapus" });
   };
 
   const startSession = (tableId: string, durationMinutes: number) => {
@@ -113,7 +113,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const updateSettings = (newSettings: Partial<AppSettings>) => {
     setSettings(prev => ({ ...prev, ...newSettings }));
-    toast({ title: "Settings Updated" });
+    toast({ title: "Pengaturan Diperbarui" });
   };
 
   const getTableById = (id: string) => tables.find(t => t.id === id);

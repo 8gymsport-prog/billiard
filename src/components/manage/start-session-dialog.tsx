@@ -23,8 +23,8 @@ export function StartSessionDialog({ table, onClose }: StartSessionDialogProps) 
   const handleStart = () => {
     startSession(table.id, duration);
     toast({
-      title: "Session Started",
-      description: `Session on ${table.name} has begun.`,
+      title: "Sesi Dimulai",
+      description: `Sesi di ${table.name} telah dimulai.`,
     });
     onClose();
   };
@@ -33,15 +33,15 @@ export function StartSessionDialog({ table, onClose }: StartSessionDialogProps) 
     <Dialog open={true} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Start Session on {table.name}</DialogTitle>
+          <DialogTitle>Mulai Sesi di {table.name}</DialogTitle>
           <DialogDescription>
-            Enter the session duration in minutes. Use 0 for an open-ended session.
+            Masukkan durasi sesi dalam menit. Gunakan 0 untuk sesi tanpa batas waktu.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="duration" className="text-right">
-              Duration (mins)
+              Durasi (menit)
             </Label>
             <Input
               id="duration"
@@ -54,10 +54,10 @@ export function StartSessionDialog({ table, onClose }: StartSessionDialogProps) 
           </div>
         </div>
         <DialogFooter>
-          <Button type="button" variant="outline" onClick={onClose}>Cancel</Button>
+          <Button type="button" variant="outline" onClick={onClose}>Batal</Button>
           <Button type="submit" onClick={handleStart}>
             <Play className="w-4 h-4 mr-2" />
-            Start Session
+            Mulai Sesi
           </Button>
         </DialogFooter>
       </DialogContent>

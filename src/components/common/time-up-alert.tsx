@@ -35,12 +35,12 @@ export function TimeUpAlert({ session }: TimeUpAlertProps) {
     <AlertDialog open={showAlert} onOpenChange={setShowAlert}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle className="font-headline text-destructive text-2xl">Time's Up!</AlertDialogTitle>
+          <AlertDialogTitle className="font-headline text-destructive text-2xl">Waktu Habis!</AlertDialogTitle>
           <AlertDialogDescription>
-            The session on <strong>{session.tableName}</strong> has finished.
+            Sesi di <strong>{session.tableName}</strong> telah selesai.
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogAction onClick={() => setShowAlert(false)}>Acknowledge</AlertDialogAction>
+        <AlertDialogAction onClick={() => setShowAlert(false)}>Mengerti</AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
   );

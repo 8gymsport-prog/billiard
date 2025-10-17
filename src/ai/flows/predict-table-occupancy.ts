@@ -12,18 +12,18 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const PredictTableOccupancyInputSchema = z.object({
-  historicalData: z.string().describe('Historical game data, including table ID, start time, end time, and duration.'),
+  historicalData: z.string().describe('Data permainan historis, termasuk ID meja, waktu mulai, waktu berakhir, dan durasi.'),
 });
 export type PredictTableOccupancyInput = z.infer<typeof PredictTableOccupancyInputSchema>;
 
 const PredictTableOccupancyOutputSchema = z.object({
   tablePredictions: z.array(
     z.object({
-      tableId: z.string().describe('The ID of the billiard table.'),
-      predictedOccupancy: z.number().describe('The predicted occupancy rate (0-1) for the table.'),
-      reason: z.string().describe('The reason for the predicted occupancy.'),
+      tableId: z.string().describe('ID meja biliar.'),
+      predictedOccupancy: z.number().describe('Tingkat okupansi yang diprediksi (0-1) untuk meja.'),
+      reason: z.string().describe('Alasan untuk prediksi okupansi.'),
     })
-  ).describe('An array of table occupancy predictions.'),
+  ).describe('Sebuah array prediksi okupansi meja.'),
 });
 export type PredictTableOccupancyOutput = z.infer<typeof PredictTableOccupancyOutputSchema>;
 
@@ -35,14 +35,14 @@ const predictTableOccupancyPrompt = ai.definePrompt({
   name: 'predictTableOccupancyPrompt',
   input: {schema: PredictTableOccupancyInputSchema},
   output: {schema: PredictTableOccupancyOutputSchema},
-  prompt: `You are an AI assistant that analyzes historical billiard game data to predict table occupancy rates.
+  prompt: `Anda adalah asisten AI yang menganalisis data permainan biliar historis untuk memprediksi tingkat okupansi meja.
 
-  Analyze the following historical data to predict the occupancy rate for each table.  Occupancy rate should be between 0 and 1.
+  Analisis data historis berikut untuk memprediksi tingkat okupansi untuk setiap meja. Tingkat okupansi harus antara 0 dan 1.
 
-  Historical Data: {{{historicalData}}}
+  Data Historis: {{{historicalData}}}
 
-  Provide a predicted occupancy rate and a brief explanation for each table.
-  Ensure that the response matches the output schema.`, 
+  Berikan prediksi tingkat okupansi dan penjelasan singkat untuk setiap meja dalam Bahasa Indonesia.
+  Pastikan respons sesuai dengan skema output.`, 
 });
 
 const predictTableOccupancyFlow = ai.defineFlow(

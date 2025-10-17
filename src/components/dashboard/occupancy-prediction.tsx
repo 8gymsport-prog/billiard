@@ -22,11 +22,11 @@ export function OccupancyPrediction() {
     setPrediction(null);
 
     const historicalData = finishedSessions
-      .map(s => `Table: ${s.tableName}, Start: ${new Date(s.startTime).toLocaleString()}, End: ${s.endTime ? new Date(s.endTime).toLocaleString() : 'N/A'}, Duration: ${Math.round((s.endTime ?? s.startTime) - s.startTime / (60 * 1000))} mins`)
+      .map(s => `Meja: ${s.tableName}, Mulai: ${new Date(s.startTime).toLocaleString()}, Selesai: ${s.endTime ? new Date(s.endTime).toLocaleString() : 'N/A'}, Durasi: ${Math.round((s.endTime ?? s.startTime) - s.startTime / (60 * 1000))} menit`)
       .join('\n');
 
     if (finishedSessions.length < 1) {
-      setError("Not enough historical data to make a prediction. Complete at least one session.");
+      setError("Data historis tidak cukup untuk membuat prediksi. Selesaikan setidaknya satu sesi.");
       setIsLoading(false);
       return;
     }
@@ -36,7 +36,7 @@ export function OccupancyPrediction() {
       setPrediction(result);
     } catch (e) {
       console.error(e);
-      setError("Failed to generate prediction. Please try again.");
+      setError("Gagal membuat prediksi. Silakan coba lagi.");
     } finally {
       setIsLoading(false);
     }
@@ -53,21 +53,21 @@ export function OccupancyPrediction() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-xl font-headline">
           <BrainCircuit className="text-accent" />
-          AI Occupancy Prediction
+          Prediksi Okupansi AI
         </CardTitle>
-        <CardDescription>Predict which tables will be popular based on historical data.</CardDescription>
+        <CardDescription>Prediksi meja mana yang akan populer berdasarkan data historis.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <Button onClick={handlePredict} disabled={isLoading} className="w-full">
           {isLoading ? (
             <>
               <Zap className="mr-2 h-4 w-4 animate-spin" />
-              Analyzing...
+              Menganalisis...
             </>
           ) : (
             <>
               <Zap className="mr-2 h-4 w-4" />
-              Predict Popular Tables
+              Prediksi Meja Populer
             </>
           )}
         </Button>
@@ -85,7 +85,7 @@ export function OccupancyPrediction() {
                 <div className="flex justify-between items-center mb-1">
                   <h4 className="font-semibold">{p.tableId}</h4>
                   <Badge variant={getOccupancyBadgeVariant(p.predictedOccupancy)}>
-                    {`${(p.predictedOccupancy * 100).toFixed(0)}% busy`}
+                    {`${(p.predictedOccupancy * 100).toFixed(0)}% sibuk`}
                   </Badge>
                 </div>
                 <p className="text-sm text-muted-foreground">{p.reason}</p>

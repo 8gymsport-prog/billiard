@@ -8,14 +8,14 @@ import { Hourglass } from "lucide-react";
 import { TimeUpAlert } from "../common/time-up-alert";
 
 export function ActiveSessions() {
-  const { activeSessions, endSession } = useCueKeeper();
+  const { activeSessions } = useCueKeeper();
   
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-xl font-headline">
           <Hourglass className="text-accent" />
-          Active Sessions
+          Sesi Aktif
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -30,7 +30,7 @@ export function ActiveSessions() {
           </div>
         ) : (
           <div className="text-center text-muted-foreground py-8">
-            <p>No tables are currently in use.</p>
+            <p>Saat ini tidak ada meja yang digunakan.</p>
           </div>
         )}
       </CardContent>

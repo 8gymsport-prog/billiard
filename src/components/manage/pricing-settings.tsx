@@ -22,27 +22,27 @@ export function PricingSettings() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-xl font-headline">
             <DollarSign className="text-accent" />
-            Pricing
+            Harga
         </CardTitle>
         <CardDescription>
-            Set the hourly rate for table usage. Current rate: {formatCurrency(settings.hourlyRate)}/hour.
+            Atur tarif per jam untuk penggunaan meja. Tarif saat ini: {formatCurrency(settings.hourlyRate)}/jam.
         </CardDescription>
       </CardHeader>
       <CardContent className="flex items-end gap-2">
         <div className="grid w-full max-w-sm items-center gap-1.5">
-          <Label htmlFor="hourly-rate">New Hourly Rate ($)</Label>
+          <Label htmlFor="hourly-rate">Tarif Per Jam Baru (Rp)</Label>
           <Input
             type="number"
             id="hourly-rate"
             value={rate}
             onChange={(e) => setRate(Number(e.target.value))}
             min="0"
-            step="0.5"
+            step="500"
           />
         </div>
         <Button onClick={handleSave}>
             <Save className="w-4 h-4 mr-2" />
-            Save
+            Simpan
         </Button>
       </CardContent>
     </Card>

@@ -17,9 +17,9 @@ export function HistoryTab() {
 
   return (
     <div className="p-4 sm:p-6">
-      <h2 className="text-2xl font-headline text-primary mb-4">Session History</h2>
+      <h2 className="text-2xl font-headline text-primary mb-4">Riwayat Sesi</h2>
        <Input
-        placeholder="Filter by table name..."
+        placeholder="Filter berdasarkan nama meja..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="max-w-sm mb-4"
@@ -28,11 +28,11 @@ export function HistoryTab() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Table</TableHead>
-              <TableHead>Start Time</TableHead>
-              <TableHead>End Time</TableHead>
-              <TableHead>Duration</TableHead>
-              <TableHead className="text-right">Cost</TableHead>
+              <TableHead>Meja</TableHead>
+              <TableHead>Waktu Mulai</TableHead>
+              <TableHead>Waktu Selesai</TableHead>
+              <TableHead>Durasi</TableHead>
+              <TableHead className="text-right">Biaya</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -55,7 +55,7 @@ export function HistoryTab() {
             ) : (
               <TableRow>
                 <TableCell colSpan={5} className="h-24 text-center">
-                  No completed sessions found.
+                  Tidak ada sesi yang selesai ditemukan.
                 </TableCell>
               </TableRow>
             )}

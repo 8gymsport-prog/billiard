@@ -34,16 +34,16 @@ export function RevenueOverview() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-xl font-headline">
           <DollarSign className="text-accent" />
-          Revenue Overview
+          Ringkasan Pendapatan
         </CardTitle>
-        <CardDescription>Total Revenue: {formatCurrency(totalRevenue)}</CardDescription>
+        <CardDescription>Total Pendapatan: {formatCurrency(totalRevenue)}</CardDescription>
       </CardHeader>
       <CardContent>
         {chartData.length > 0 ? (
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={chartData}>
               <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-              <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value}`} />
+              <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `Rp${value}`} />
               <Tooltip
                 contentStyle={{
                   backgroundColor: 'hsl(var(--background))',
@@ -51,6 +51,7 @@ export function RevenueOverview() {
                   color: 'hsl(var(--foreground))',
                   borderRadius: 'var(--radius)',
                 }}
+                formatter={(value: number) => formatCurrency(value)}
                 cursor={{ fill: 'hsl(var(--muted))' }}
               />
               <Bar dataKey="total" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
@@ -58,7 +59,7 @@ export function RevenueOverview() {
           </ResponsiveContainer>
         ) : (
            <div className="h-[300px] flex items-center justify-center text-muted-foreground">
-             <p>No revenue data yet. Complete a session to see results.</p>
+             <p>Belum ada data pendapatan. Selesaikan sesi untuk melihat hasilnya.</p>
            </div>
         )}
       </CardContent>

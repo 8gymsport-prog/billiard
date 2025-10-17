@@ -48,12 +48,12 @@ export function SessionCard({ session }: SessionCardProps) {
               <div className="font-bold text-foreground">
                 {session.durationMinutes > 0
                   ? isTimeUp
-                    ? `Time Up! (+${formatDuration(elapsedMinutes - session.durationMinutes)})`
-                    : `${formatDuration(remainingMinutes)} left`
-                  : `${formatDuration(elapsedMinutes)} elapsed`}
+                    ? `Waktu Habis! (+${formatDuration(elapsedMinutes - session.durationMinutes)})`
+                    : `${formatDuration(remainingMinutes)} tersisa`
+                  : `${formatDuration(elapsedMinutes)} berlalu`}
               </div>
               <div className="text-xs">
-                {session.durationMinutes > 0 ? `of ${formatDuration(session.durationMinutes)}` : "Open-ended session"}
+                {session.durationMinutes > 0 ? `dari ${formatDuration(session.durationMinutes)}` : "Sesi tanpa batas waktu"}
               </div>
             </div>
           </div>
@@ -61,14 +61,14 @@ export function SessionCard({ session }: SessionCardProps) {
             <Tag className="w-5 h-5 text-accent" />
             <div>
               <div className="font-bold text-foreground">{formatCurrency(currentCost)}</div>
-              <div className="text-xs">Current cost</div>
+              <div className="text-xs">Biaya saat ini</div>
             </div>
           </div>
         </CardContent>
         <CardFooter>
           <Button variant="destructive" className="w-full" onClick={() => setIsEndSessionOpen(true)}>
             <XCircle className="w-4 h-4 mr-2" />
-            End Session
+            Akhiri Sesi
           </Button>
         </CardFooter>
       </Card>

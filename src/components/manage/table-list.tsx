@@ -26,13 +26,13 @@ export function TableList() {
             <div>
                 <CardTitle className="flex items-center gap-2 text-xl font-headline">
                     <Dices className="text-accent" />
-                    Table Management
+                    Manajemen Meja
                 </CardTitle>
-                <CardDescription>View status, start sessions, and configure your tables.</CardDescription>
+                <CardDescription>Lihat status, mulai sesi, dan konfigurasikan meja Anda.</CardDescription>
             </div>
             <Button onClick={() => setIsAddingTable(true)}>
                 <Plus className="w-4 h-4 mr-2" />
-                Add Table
+                Tambah Meja
             </Button>
         </CardHeader>
         <CardContent>
@@ -44,7 +44,7 @@ export function TableList() {
                   <div>
                     <h3 className="font-semibold text-card-foreground">{table.name}</h3>
                     <Badge variant={isActive ? "destructive" : "secondary"}>
-                      {isActive ? "In Use" : "Available"}
+                      {isActive ? "Digunakan" : "Tersedia"}
                     </Badge>
                   </div>
                   <div className="flex items-center gap-1">
@@ -53,7 +53,7 @@ export function TableList() {
                       size="icon"
                       onClick={() => setStartingSessionTable(table)}
                       disabled={isActive}
-                      aria-label={`Start session on ${table.name}`}
+                      aria-label={`Mulai sesi di ${table.name}`}
                     >
                       <Play className="h-4 w-4 text-green-500" />
                     </Button>
@@ -62,20 +62,20 @@ export function TableList() {
                     </Button>
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
-                         <Button variant="ghost" size="icon" disabled={isActive} aria-label={`Delete ${table.name}`}>
+                         <Button variant="ghost" size="icon" disabled={isActive} aria-label={`Hapus ${table.name}`}>
                             <Trash className="h-4 w-4 text-destructive/70" />
                         </Button>
                       </AlertDialogTrigger>
                       <AlertDialogContent>
                         <AlertDialogHeader>
-                          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                          <AlertDialogTitle>Apakah Anda yakin?</AlertDialogTitle>
                           <AlertDialogDescription>
-                            This will permanently delete "{table.name}". This action cannot be undone.
+                            Ini akan menghapus "{table.name}" secara permanen. Tindakan ini tidak dapat dibatalkan.
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction onClick={() => removeTable(table.id)}>Delete</AlertDialogAction>
+                          <AlertDialogCancel>Batal</AlertDialogCancel>
+                          <AlertDialogAction onClick={() => removeTable(table.id)}>Hapus</AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
                     </AlertDialog>
