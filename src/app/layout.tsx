@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className={inter.variable} suppressHydrationWarning>
-      <body className="font-body antialiased flex flex-col min-h-screen">
+      <body>
         <AppProvider>
           <div className="flex-grow">
             {children}
@@ -32,7 +32,7 @@ export default function RootLayout({
           <Toaster />
         </AppProvider>
         <Script
-          src="/register-sw.js"
+          src="/sw.js"
           strategy="afterInteractive"
         />
       </body>
