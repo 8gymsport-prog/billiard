@@ -3,8 +3,16 @@
 import React, { createContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import { BilliardTable, Session, AppSettings } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { useSessionWatcher } from '@/hooks/use-session-watcher';
 
 const isServer = typeof window === 'undefined';
+
+// A new component to host the session watcher hook
+function SessionWatcher() {
+  useSessionWatcher();
+  return null;
+}
 
 function usePersistentState<T>(key: string, defaultValue: T): [T, React.Dispatch<React.SetStateAction<T>>] {
   const [state, setState] = useState<T>(() => {
@@ -13,7 +21,7 @@ function usePersistentState<T>(key: string, defaultValue: T): [T, React.Dispatch
       const storedValue = localStorage.getItem(key);
       return storedValue ? JSON.parse(storedValue) : defaultValue;
     } catch (error) {
-      console.error(`Error reading localStorage key “${key}”:`, error);
+      console.error(`Error reading localStorage key '${key}':`, error);
       return defaultValue;
     }
   });
@@ -23,7 +31,7 @@ function usePersistentState<T>(key: string, defaultValue: T): [T, React.Dispatch
       try {
         localStorage.setItem(key, JSON.stringify(state));
       } catch (error) {
-        console.error(`Error setting localStorage key “${key}”:`, error);
+        console.error(`Error setting localStorage key '${key}':`, error);
       }
     }
   }, [key, state]);
@@ -56,26 +64,35 @@ export function AppProvider({ children }: { children: ReactNode }) {
     { id: '3', name: 'Meja 3' },
   ]);
   const [sessions, setSessions] = usePersistentState<Session[]>('cuekeeper_sessions', []);
-  const [settings, setSettings] = usePersistentState<AppSettings>('cuekeeper_settings', { hourlyRate: 25000 });
+  const [settings, setSettings] = usePersistentState<AppSettings>('cuekeeper_settings', { 
+    hourlyRate: 25000,
+    notificationsEnabled: true
+  });
+
+  const notify = (options: any) => {
+    if (settings.notificationsEnabled) {
+      toast(options);
+    }
+  }
 
   const addTable = (name: string) => {
     const newTable: BilliardTable = { id: crypto.randomUUID(), name };
     setTables(prev => [...prev, newTable]);
-    toast({ title: "Meja Ditambahkan", description: `Meja "${name}" telah dibuat.` });
+    notify({ title: "Meja Ditambahkan", description: `Meja "${name}" telah dibuat.` });
   };
 
   const updateTable = (id: string, name: string) => {
     setTables(prev => prev.map(t => t.id === id ? { ...t, name } : t));
-    toast({ title: "Meja Diperbarui", description: `Meja telah diubah namanya menjadi "${name}".` });
+    notify({ title: "Meja Diperbarui", description: `Meja telah diubah namanya menjadi "${name}".` });
   }
 
   const removeTable = (id: string) => {
     if (sessions.some(s => s.tableId === id && s.status === 'active')) {
-      toast({ variant: 'destructive', title: "Tidak Dapat Menghapus Meja", description: "Meja ini sedang digunakan." });
+      notify({ variant: 'destructive', title: "Tidak Dapat Menghapus Meja", description: "Meja ini sedang digunakan." });
       return;
     }
     setTables(prev => prev.filter(t => t.id !== id));
-    toast({ title: "Meja Dihapus" });
+    notify({ title: "Meja Dihapus" });
   };
 
   const startSession = (tableId: string, durationMinutes: number) => {
@@ -113,10 +130,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const updateSettings = (newSettings: Partial<AppSettings>) => {
     setSettings(prev => ({ ...prev, ...newSettings }));
-    toast({ title: "Pengaturan Diperbarui" });
+    notify({ title: "Pengaturan Diperbarui" });
   };
 
-  const getTableById = (id: string) => tables.find(t => t.id === id);
+  const getTableById = useCallback((id: string) => tables.find(t => t.id === id), [tables]);
   
   const activeSessions = sessions.filter(s => s.status === 'active');
   const finishedSessions = sessions.filter(s => s.status === 'finished').sort((a, b) => (b.endTime ?? 0) - (a.endTime ?? 0));
@@ -136,5 +153,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
     getTableById,
   };
 
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+  return (
+    <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
+      <AppContext.Provider value={value}>
+        {children}
+        <SessionWatcher />
+      </AppContext.Provider>
+    </NextThemesProvider>
+  );
 }

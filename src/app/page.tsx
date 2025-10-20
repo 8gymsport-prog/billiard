@@ -3,10 +3,12 @@
 import { HistoryTab } from "@/components/history/history-tab";
 import { DashboardTab } from "@/components/dashboard/dashboard-tab";
 import { ManageTab } from "@/components/manage/manage-tab";
-// import { Logo } from "@/components/icons/logo";
+import { SettingsTab } from "@/components/settings/settings-tab";
+import { LiveClock } from "@/components/common/live-clock";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
-import { Dices, LayoutDashboard, List, Settings } from "lucide-react";
+import { Dices, LayoutDashboard, List, Settings, History } from "lucide-react";
+import { ClientOnly } from "@/components/common/client-only";
 
 export default function Home() {
   return (
@@ -20,21 +22,28 @@ export default function Home() {
             8GymSport Billiard
           </h1>
           <p className="text-muted-foreground">Automatic System For Billiard</p>
+          <ClientOnly>
+            <LiveClock />
+          </ClientOnly>
         </div>
       </header>
       <Tabs defaultValue="dashboard" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 mb-4">
+        <TabsList className="grid w-full grid-cols-4 mb-4">
           <TabsTrigger value="dashboard">
             <LayoutDashboard className="w-4 h-4 mr-2" />
             Dashboard
           </TabsTrigger>
           <TabsTrigger value="manage">
-            <Settings className="w-4 h-4 mr-2" />
+            <List className="w-4 h-4 mr-2" />
             Kelola
           </TabsTrigger>
           <TabsTrigger value="history">
-            <List className="w-4 h-4 mr-2" />
+            <History className="w-4 h-4 mr-2" />
             Riwayat
+          </TabsTrigger>
+          <TabsTrigger value="settings">
+            <Settings className="w-4 h-4 mr-2" />
+            Pengaturan
           </TabsTrigger>
         </TabsList>
         <Card>
@@ -47,6 +56,9 @@ export default function Home() {
             </TabsContent>
             <TabsContent value="history" className="m-0">
               <HistoryTab />
+            </TabsContent>
+            <TabsContent value="settings" className="m-0">
+              <SettingsTab />
             </TabsContent>
           </CardContent>
         </Card>

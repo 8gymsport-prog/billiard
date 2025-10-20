@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { BilliardTable } from "@/lib/types";
 import { useCueKeeper } from "@/hooks/use-cue-keeper";
 import { Button } from "@/components/ui/button";
@@ -29,6 +29,15 @@ export function StartSessionDialog({ table, onClose }: StartSessionDialogProps) 
     onClose();
   };
 
+  const endTime = useMemo(() => {
+    if (duration <= 0) {
+      return "Sesi tanpa batas waktu";
+    }
+    const now = new Date();
+    now.setMinutes(now.getMinutes() + duration);
+    return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+  }, [duration]);
+
   return (
     <Dialog open={true} onOpenChange={onClose}>
       <DialogContent>
@@ -45,12 +54,20 @@ export function StartSessionDialog({ table, onClose }: StartSessionDialogProps) 
             </Label>
             <Input
               id="duration"
-              type="number"
+              type="text"
+              inputMode="numeric"
               value={duration}
-              onChange={(e) => setDuration(Number(e.target.value))}
+              onChange={(e) => {
+                const numericValue = e.target.value.replace(/[^0-9]/g, '');
+                setDuration(Number(numericValue));
+              }}
               className="col-span-3"
-              min="0"
             />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <div className="col-start-2 col-span-3 text-sm text-muted-foreground">
+                Perkiraan waktu selesai: <strong>{endTime}</strong>
+            </div>
           </div>
         </div>
         <DialogFooter>

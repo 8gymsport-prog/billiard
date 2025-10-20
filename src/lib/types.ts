@@ -18,4 +18,5 @@ export interface Session {
 
 export interface AppSettings {
   hourlyRate: number;
+  notificationsEnabled: boolean;
 }
