@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dices, LayoutDashboard, List, Settings, History } from "lucide-react";
 import { ClientOnly } from "@/components/common/client-only";
+import { BackendStatus } from "@/components/common/backend-status";
 
 export default function Home() {
   return (
@@ -23,7 +24,11 @@ export default function Home() {
           </h1>
           <p className="text-muted-foreground">Automatic System For Billiard</p>
           <ClientOnly>
-            <LiveClock />
+            <div className="flex items-center gap-2">
+              <LiveClock />
+              <span>&bull;</span>
+              <BackendStatus />
+            </div>
           </ClientOnly>
         </div>
       </header>
