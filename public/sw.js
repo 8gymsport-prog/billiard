@@ -1,30 +1,19 @@
-self.addEventListener("push", (event) => {
+self.addEventListener('push', (event) => {
   const data = event.data.json();
-  const title = data.title || "8GymSport Billiard";
+  const title = data.title || 'Pemberitahuan';
   const options = {
     body: data.body,
-    icon: data.icon || "/favicon.ico",
-    badge: data.badge || "/favicon.ico",
+    icon: data.icon || '/favicon.ico',
+    badge: data.badge || '/favicon.ico',
     actions: data.actions || [],
+    tag: data.tag,
+    data: data.data
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
 });
 
-self.addEventListener("notificationclick", (event) => {
+self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-
-  // This looks for an existing window and focuses it.
-  event.waitUntil(
-    clients
-      .matchAll({
-        type: "window",
-      })
-      .then((clientList) => {
-        for (const client of clientList) {
-          if (client.url === "/" && "focus" in client) return client.focus();
-        }
-        if (clients.openWindow) return clients.openWindow("/");
-      })
-  );
+  // Aksi kustom untuk klik notifikasi bisa ditambahkan di sini
 });

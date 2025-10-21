@@ -8,7 +8,20 @@ import { useSessionWatcher } from '@/hooks/use-session-watcher';
 
 const isServer = typeof window === 'undefined';
 
-// A new component to host the session watcher hook
+// Komponen baru untuk mendaftarkan Service Worker
+function ServiceWorkerRegistration() {
+  useEffect(() => {
+    if ('serviceWorker' in navigator && process.env.NODE_ENV !== 'development') {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => console.log('Service Worker registered with scope:', registration.scope))
+        .catch(error => console.error('Service Worker registration failed:', error));
+    }
+  }, []);
+
+  return null;
+}
+
+// Komponen baru untuk meng-host hook pengamat sesi
 function SessionWatcher() {
   useSessionWatcher();
   return null;
@@ -66,13 +79,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [sessions, setSessions] = usePersistentState<Session[]>('cuekeeper_sessions', []);
   const [settings, setSettings] = usePersistentState<AppSettings>('cuekeeper_settings', { 
     hourlyRate: 25000,
-    notificationsEnabled: true
+    notificationsEnabled: false // Default ke false, pengguna harus mengaktifkan secara manual
   });
 
   const notify = (options: any) => {
-    if (settings.notificationsEnabled) {
-      toast(options);
-    }
+    // Toast notifikasi selalu ditampilkan, terlepas dari pengaturan notifikasi push
+    toast(options);
   }
 
   const addTable = (name: string) => {
@@ -130,7 +142,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const updateSettings = (newSettings: Partial<AppSettings>) => {
     setSettings(prev => ({ ...prev, ...newSettings }));
-    notify({ title: "Pengaturan Diperbarui" });
+    if(newSettings.hourlyRate !== undefined) {
+      notify({ title: "Pengaturan Diperbarui" });
+    }
   };
 
   const getTableById = useCallback((id: string) => tables.find(t => t.id === id), [tables]);
@@ -156,6 +170,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   return (
     <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
       <AppContext.Provider value={value}>
+        <ServiceWorkerRegistration />
         {children}
         <SessionWatcher />
       </AppContext.Provider>

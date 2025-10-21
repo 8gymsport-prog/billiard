@@ -4,10 +4,10 @@ import { AppProvider } from '@/context/app-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { Footer } from '@/components/footer';
 import './globals.css';
-import Script from 'next/script';
 
 const inter = Inter({
   subsets: ['latin'],
+  display: 'swap',
   variable: '--font-inter',
 });
 
@@ -30,11 +30,7 @@ export default function RootLayout({
           </div>
           <Footer />
           <Toaster />
-        </AppProvider>
-        <Script
-          src="/sw.js"
-          strategy="afterInteractive"
-        />
+        </App-Provider>
       </body>
     </html>
   );
