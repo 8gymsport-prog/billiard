@@ -6,7 +6,7 @@ import { type WeatherForecastOutput } from '@/ai/schemas/weather-schema';
 import { Badge } from '@/components/ui/badge';
 import { Sun, Cloud, CloudRain, CloudLightning, Snowflake, CloudFog } from 'lucide-react';
 
-const LOCATION = "Taman Kopo Indah, Kabupaten Bandung, Jawa Barat";
+const LOCATION = "Taman Kopo Indah 3, Kabupaten Bandung, Jawa Barat 40218";
 
 const weatherIcons: { [key: string]: React.ElementType } = {
   cerah: Sun,
