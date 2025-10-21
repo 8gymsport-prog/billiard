@@ -4,28 +4,10 @@
  * @fileOverview Predicts billiard table occupancy based on historical data.
  *
  * - predictTableOccupancy - Predicts the occupancy of each billiard table.
- * - PredictTableOccupancyInput - The input type for the predictTableOccupancy function.
- * - PredictTableOccupancyOutput - The return type for the predictTableOccupancy function.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
-
-const PredictTableOccupancyInputSchema = z.object({
-  historicalData: z.string().describe('Data permainan historis, termasuk ID meja, waktu mulai, waktu berakhir, dan durasi.'),
-});
-export type PredictTableOccupancyInput = z.infer<typeof PredictTableOccupancyInputSchema>;
-
-const PredictTableOccupancyOutputSchema = z.object({
-  tablePredictions: z.array(
-    z.object({
-      tableId: z.string().describe('ID meja biliar.'),
-      predictedOccupancy: z.number().describe('Tingkat okupansi yang diprediksi (0-1) untuk meja.'),
-      reason: z.string().describe('Alasan untuk prediksi okupansi.'),
-    })
-  ).describe('Sebuah array prediksi okupansi meja.'),
-});
-export type PredictTableOccupancyOutput = z.infer<typeof PredictTableOccupancyOutputSchema>;
+import { PredictTableOccupancyInputSchema, PredictTableOccupancyOutputSchema, type PredictTableOccupancyInput, type PredictTableOccupancyOutput } from '@/ai/schemas/occupancy-schema';
 
 export async function predictTableOccupancy(input: PredictTableOccupancyInput): Promise<PredictTableOccupancyOutput> {
   return predictTableOccupancyFlow(input);

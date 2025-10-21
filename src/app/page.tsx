@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Dices, LayoutDashboard, List, Settings, History } from "lucide-react";
 import { ClientOnly } from "@/components/common/client-only";
 import { BackendStatus } from "@/components/common/backend-status";
+import { WeatherForecast } from "@/components/common/weather-forecast";
 
 export default function Home() {
   return (
@@ -24,10 +25,12 @@ export default function Home() {
           </h1>
           <p className="text-muted-foreground">Automatic System For Billiard</p>
           <ClientOnly>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <LiveClock />
               <span>&bull;</span>
               <BackendStatus />
+              <span>&bull;</span>
+              <WeatherForecast />
             </div>
           </ClientOnly>
         </div>

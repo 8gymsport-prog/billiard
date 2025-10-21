@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { predictTableOccupancy, PredictTableOccupancyOutput } from "@/ai/flows/predict-table-occupancy";
+import { predictTableOccupancy } from "@/ai/flows/predict-table-occupancy";
+import { type PredictTableOccupancyOutput } from "@/ai/schemas/occupancy-schema";
 import { useCueKeeper } from "@/hooks/use-cue-keeper";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
