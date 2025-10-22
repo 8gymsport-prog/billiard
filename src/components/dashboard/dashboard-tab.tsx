@@ -1,5 +1,5 @@
 import { ActiveSessions } from "./active-sessions";
-import { OccupancyPrediction } from "./occupancy-prediction";
+import { AIAnalyst } from "./ai-analyst";
 import { RevenueOverview } from "./revenue-overview";
 
 export function DashboardTab() {
@@ -8,7 +8,7 @@ export function DashboardTab() {
       <ActiveSessions />
       <div className="grid gap-6 md:grid-cols-2">
         <RevenueOverview />
-        <OccupancyPrediction />
+        <AIAnalyst />
       </div>
     </div>
   );
